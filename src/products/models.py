@@ -35,11 +35,11 @@ class ProductManager(models.Manager):
     def all(self):
         return self.get_queryset().active()
 
-    def featured(self): #Product.objects.featured() 
+    def featured(self): 
         return self.get_queryset().featured()
 
     def get_by_id(self, id):
-        qs = self.get_queryset().filter(id=id) # Product.objects == self.get_queryset()
+        qs = self.get_queryset().filter(id=id)
         if qs.count() == 1:
             return qs.first()
         return None
@@ -52,12 +52,12 @@ class Product(models.Model):
     image           = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
     featured        = models.BooleanField(default=False)
     active          = models.BooleanField(default=True)
+    timestamp       = models.DateTimeField(auto_now_add=True)
 
 
     objects = ProductManager()
 
     def get_absolute_url(self):
-        #return "/products/{slug}/".format(slug=self.slug)
         return reverse("products:detail", kwargs={"slug": self.slug})
 
         
