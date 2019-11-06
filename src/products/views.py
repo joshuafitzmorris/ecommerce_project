@@ -18,7 +18,7 @@ class ProductFeaturedListView(ListView):
 class ProductFeaturedDetailView(DetailView):
     queryset = Product.objects.all().featured()
     template_name = "products/featured-detail.html"
-
+    
 
 class ProductListView(ListView):
     template_name = "products/list.html"
@@ -51,7 +51,6 @@ class ProductDetailSlugView(DetailView):
     def get_object(self, *args, **kwargs):
         request = self.request
         slug = self.kwargs.get('slug')
-
         try:
             instance = Product.objects.get(slug=slug, active=True)
         except Product.DoesNotExist:
@@ -81,12 +80,11 @@ class ProductDetailView(DetailView):
             raise Http404("Product doesn't exist")
         return instance
 
-
 def product_detail_view(request, pk=None, *args, **kwargs):
+
     instance = Product.objects.get_by_id(pk)
     if instance is None:
         raise Http404("Product doesn't exist")
-
     context = {
         'object': instance
     }
