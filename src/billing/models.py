@@ -5,9 +5,12 @@ from django.core.urlresolvers import reverse
 from accounts.models import GuestEmail
 User = settings.AUTH_USER_MODEL
 
+# abc@teamcfe.com -->> 1000000 billing profiles
+# user abc@teamcfe.com -- 1 billing profile
 
 import stripe
-stripe.api_key = "sk_test_SiPaE5LzttrsrT6fdxXwXbXa00ykr9dtCr"
+STRIPE_SECRET_KEY = getattr(settings, "STRIPE_SECRET_KEY", "sk_test_cu1lQmcg1OLffhLvYrSCp5XE")
+stripe.api_key = STRIPE_SECRET_KEY
 
 
 
@@ -139,6 +142,15 @@ def new_card_post_save_receiver(sender, instance, created, *args, **kwargs):
 post_save.connect(new_card_post_save_receiver, sender=Card)
 
 
+
+# stripe.Charge.create(
+#   amount = int(order_obj.total * 100),
+#   currency = "usd",
+#   customer =  BillingProfile.objects.filter(email='hello@teamcfe.com').first().stripe_id,
+#   source = Card.objects.filter(billing_profile__email='hello@teamcfe.com').first().stripe_id, # obtained with Stripe.js
+#   description="Charge for elijah.martin@example.com"
+# )
+
 class ChargeManager(models.Manager):
     def do(self, billing_profile, order_obj, card=None): # Charge.objects.do()
         card_obj = card
@@ -180,4 +192,6 @@ class Charge(models.Model):
     risk_level              = models.CharField(max_length=120, null=True, blank=True)
 
     objects = ChargeManager()
+
+
 

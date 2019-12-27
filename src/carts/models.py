@@ -44,6 +44,14 @@ class Cart(models.Model):
     def __str__(self):
         return str(self.id)
 
+    @property
+    def is_digital(self):
+        qs = self.products.all() #every product
+        new_qs = qs.filter(is_digital=False) # every product that is not digial
+        if new_qs.exists():
+            return False
+        return True
+
 
 
 
@@ -69,3 +77,16 @@ def pre_save_cart_receiver(sender, instance, *args, **kwargs):
         instance.total = 0.00
 
 pre_save.connect(pre_save_cart_receiver, sender=Cart)
+
+
+
+
+
+
+
+
+
+
+
+
+
