@@ -9,7 +9,7 @@ olefile==0.44
 Pillow==4.2.1
 pip==9.0.1
 pytz==2017.2
-requests==2.18.4
+requests==2.20.0
 setuptools==36.3.0
 smmap2==2.0.3
 stripe==1.67.0
