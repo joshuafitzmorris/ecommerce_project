@@ -9,8 +9,7 @@ User = settings.AUTH_USER_MODEL
 # user abc@teamcfe.com -- 1 billing profile
 
 import stripe
-STRIPE_SECRET_KEY = getattr(settings, "STRIPE_SECRET_KEY", "sk_test_cu1lQmcg1OLffhLvYrSCp5XE")
-stripe.api_key = STRIPE_SECRET_KEY
+stripe.api_key = "sk_test_SiPaE5LzttrsrT6fdxXwXbXa00ykr9dtCr"
 
 
 
