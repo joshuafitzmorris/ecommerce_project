@@ -16,11 +16,6 @@ stripe.api_key = STRIPE_SECRET_KEY
 from .models import BillingProfile, Card
 
 def payment_method_view(request):
-    #next_url = 
-    # if request.user.is_authenticated():
-    #     billing_profile = request.user.billingprofile
-    #     my_customer_id = billing_profile.customer_id
-
     billing_profile, billing_profile_created = BillingProfile.objects.new_or_get(request)
     if not billing_profile:
         return redirect("/cart")

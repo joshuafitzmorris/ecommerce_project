@@ -56,8 +56,8 @@ AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to ours
 FORCE_SESSION_TO_ONE = False
 FORCE_INACTIVE_USER_ENDSESSION= False
 
-STRIPE_SECRET_KEY = "sk_test_cu1lQmcg1OLffhLvYrSCp5XE"
-STRIPE_PUB_KEY = 'pk_test_PrV61avxnHaWIYZEeiYTTVMZ'
+STRIPE_SECRET_KEY = "sk_test_SiPaE5LzttrsrT6fdxXwXbXa00ykr9dtCr"
+STRIPE_PUB_KEY = 'pk_test_iWK0KiaMkmLLLhzxJldzqLpy00hRxvSgRi'
 
 
 MIDDLEWARE = [
